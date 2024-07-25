@@ -2,7 +2,6 @@ import tkinter as tk
 import random as r
 from time import time
 
-# List of test sentences
 test = [
     "As the sun set behind the mountains, the sky transformed into a stunning canvas of colors, with shades of orange, pink, and purple blending together in perfect harmony.",
     "The technological advancements in artificial intelligence are revolutionizing the way we interact with machines, making them smarter and more intuitive than ever before.",
@@ -15,16 +14,16 @@ test = [
 
 test1 = r.choice(test)
 
-# Set up the main window
+
 root = tk.Tk()
 root.title("Typing Speed Test")
 root.config(bg="lightblue")
 
-# Heading label
+
 heading_label = tk.Label(root, text="*** Typing Speed Test Calculator ***", font=('Helvetica', 16, 'bold'), bg='lightblue', fg='white')
 heading_label.pack(pady=10)
 
-# Time limit selection
+
 time_limit_label = tk.Label(root, text="Select Time Limit (seconds):", font=('Helvetica', 14, 'bold'), bg='lightblue', fg='white')
 time_limit_label.pack(pady=10)
 
@@ -33,7 +32,7 @@ time_limit_var.set(30)
 time_limit_menu = tk.OptionMenu(root, time_limit_var, 30, 60, 90, 120)
 time_limit_menu.pack(pady=10)
 
-# Function to start the test
+
 def start_test():
     global start_time, time_limit
     start_time = None
@@ -49,45 +48,45 @@ def start_test():
     typed_display.delete(1.0, tk.END)
     typed_display.config(state=tk.DISABLED)
 
-# Start button
+
 start_button = tk.Button(root, text="Start Test", command=start_test, font=('Helvetica', 14, 'bold'), bg='white', fg='black')
 start_button.pack(pady=10)
 
-# Sentence display
+
 sentence_display = tk.Text(root, font=('Helvetica', 16, 'bold'), bg='lightblue', fg='white', wrap='word', height=5, highlightthickness=0, bd=0, borderwidth=0)
 sentence_display.pack(pady=10)
 sentence_display.insert(tk.END, test1)
 sentence_display.config(state=tk.DISABLED)
 
-# Entry for typing
+
 entry = tk.Entry(root, font=('Helvetica', 16, 'bold'), bg='white', fg='black', width=70)
 entry.pack(pady=10)
 
-# Typed text display
+
 typed_display = tk.Text(root, font=('Helvetica', 16, 'bold'), bg='lightblue', fg='white', wrap='word', height=5, highlightthickness=0, bd=0, borderwidth=0)
 typed_display.pack(pady=10)
 typed_display.config(state=tk.DISABLED)
 
-# Error label
+
 error_label = tk.Label(root, text="", font=('Helvetica', 14, 'bold'), bg='lightblue', fg='red')
 error_label.pack(pady=10)
 
-# Timer label
+
 timer_label = tk.Label(root, text="", font=('Helvetica', 14, 'bold'), bg='lightblue', fg='white')
 timer_label.pack(pady=10)
 
-# WPM label
+
 wpm_label = tk.Label(root, text="", font=('Helvetica', 14, 'bold'), bg='lightblue', fg='white')
 wpm_label.pack(pady=10)
 
-# Message label
+
 message_label = tk.Label(root, text="", font=('Helvetica', 14, 'bold'), bg='lightblue', fg='white')
 message_label.pack(pady=10)
 
 start_time = None
 time_limit = None
 
-# Function to compare text and display errors
+
 def compare_text(*args):
     global start_time
     if not start_time:
@@ -127,7 +126,7 @@ def compare_text(*args):
     if typed_text == correct_text:
         end_test()
 
-# Function to update the timer
+
 def update_timer():
     global start_time, time_limit
     elapsed_time = int(time() - start_time)
@@ -138,7 +137,7 @@ def update_timer():
     else:
         end_test()
 
-# Function to end the test and calculate WPM
+
 def end_test():
     entry.config(state=tk.DISABLED)
     elapsed_time = time() - start_time
@@ -148,7 +147,7 @@ def end_test():
     wpm_label.config(text=f"WPM: {wpm:.2f}")
     message_label.config(text="Test completed! Well done!")
 
-# Function to update the width of the text widget based on the window size
+
 def update_text_widget_width(event=None):
     entry_width = entry.winfo_width()
     text_width = int(entry_width / 10)
